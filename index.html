@@ -45,7 +45,7 @@ jQuery(function($){
       };
     });
 
-    $.supersized(_(config).merge({slides: images}));
+    $.supersized(_(config).extend({slides: images}));
   })
   .done(function(){});
 });
