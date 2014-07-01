@@ -31,18 +31,21 @@ jQuery(function($){
     
     vertical_center: 1, horizontal_center: 1,
     fit_portrait: 1, // portrait images will not be exceed browser
-  },
-  images = [];
+
+    progress_bar: 0, thumb_links: 0, thumbnail_navigation: 0
+  };
 
   $.getJSON(yql)
   .then(function(response){
-    images = _(response.query.results.item).map(function(k) {
+    var images = _(response.query.results.item).map(function(k) {
       return {
         image: k.enclosure.url,
         title: k.title,
         url: k.link
       };
     });
+
+    $.supersized(_(config).merge({slides: images}));
   })
   .done(function(){});
 });
